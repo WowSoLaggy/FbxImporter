@@ -19,7 +19,15 @@ namespace FbxImporterTest_NS
       auto fullFilePath = getWorkingDir() + L"\\..\\..\\rsrc\\" + fbxFileName;
       Logger::WriteMessage((L"Full file path: \'" + fullFilePath + L"\'").c_str());
 
-      loadFromFile(fbxFileName);
+      try
+      {
+        bool loadResult = loadFromFile(fullFilePath);
+        Assert::IsTrue(loadResult, L"Failed to load model.");
+      }
+      catch (...)
+      {
+        Assert::Fail(L"Unhandled exception.");
+      }
     }
 
   };

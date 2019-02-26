@@ -3,4 +3,4 @@
 #include <string>
 
 
-void loadFromFile(const std::wstring& i_fileName);
+bool loadFromFile(const std::wstring& i_fileName);
