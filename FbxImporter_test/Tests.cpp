@@ -14,19 +14,24 @@ namespace FbxImporterTest_NS
 
     TEST_METHOD(SimpleLoad)
     {
-      const std::wstring fbxFileName = L"Gates.fbx";
+      const std::wstring fbxFileName = L"Character.fbx";
 
       auto fullFilePath = getWorkingDir() + L"\\..\\..\\rsrc\\" + fbxFileName;
       Logger::WriteMessage((L"Full file path: \'" + fullFilePath + L"\'").c_str());
 
       try
       {
-        bool loadResult = loadFromFile(fullFilePath);
-        Assert::IsTrue(loadResult, L"Failed to load model.");
+        auto rootElement = Fbx_NS::loadFromFile(fullFilePath);
+      }
+      catch (std::exception& exc)
+      {
+        std::string string{ exc.what() };
+        std::wstring wstring{ string.cbegin(), string.cend() };
+        Assert::Fail(wstring.c_str());
       }
       catch (...)
       {
-        Assert::Fail(L"Unhandled exception.");
+        Assert::Fail(L"Unhandled exception");
       }
     }
 

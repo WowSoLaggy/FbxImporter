@@ -127,7 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\inc\Element.h" />
     <ClInclude Include="..\inc\FbxImporter.h" />
+    <ClInclude Include="..\inc\Header.h" />
+    <ClInclude Include="..\inc\Property.h" />
+    <ClInclude Include="BinaryReader.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>

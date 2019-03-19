@@ -1,6 +1,12 @@
 #pragma once
 
+#include "Element.h"
+
 #include <string>
 
 
-bool loadFromFile(const std::wstring& i_fileName);
+namespace Fbx_NS
+{
+  Element loadFromFile(const std::wstring& i_fileName);
+
+} // Fbx_NS

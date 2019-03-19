@@ -15,6 +15,18 @@
     <ClInclude Include="..\inc\FbxImporter.h">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="BinaryReader.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\Property.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\Header.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\Element.h">
+      <Filter>inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
