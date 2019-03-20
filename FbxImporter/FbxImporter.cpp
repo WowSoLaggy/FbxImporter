@@ -64,8 +64,13 @@ namespace Fbx_NS
       for (int propertyIdx = 0; propertyIdx < (int)element.propertiesCount; ++propertyIdx)
         element.properties.push_back(std::move(readProperty(i_reader)));
 
-      while (i_reader.getOffset() < (int)element.endOffset)
+      static const int FooterLength = 13;
+
+      while (i_reader.getOffset() + FooterLength < (int)element.endOffset)
         element.childs.push_back(std::move(readElement(i_reader)));
+
+      if (i_reader.getOffset() + FooterLength == (int)element.endOffset)
+        i_reader.moveOffset(FooterLength);
 
       return element;
     }

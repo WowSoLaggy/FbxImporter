@@ -13,6 +13,12 @@ public:
   bool isOpen() const { return d_stream.is_open(); }
   int getOffset() const { return d_offset; }
 
+  void moveOffset(int i_offset)
+  {
+    d_stream.seekg(i_offset, std::ios::cur);
+    d_offset += i_offset;
+  }
+
   template<size_t SIZE>
   void readArray(std::array<uint8_t, SIZE>& o_dest)
   {
