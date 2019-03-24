@@ -27,13 +27,13 @@ namespace Fbx_NS
       case PropertySerializationType::Value:
         property.length = 1;
         property.encoding = 0;
-        property.compressedLength = property.length;
+        property.compressedLength = dataTypeSizeInBytes * property.length;
         break;
 
       case PropertySerializationType::Array:
         i_reader.readValue(property.length);
         property.encoding = 0;
-        property.compressedLength = property.length;
+        property.compressedLength = dataTypeSizeInBytes * property.length;
         break;
 
       case PropertySerializationType::EncodedArray:
@@ -46,7 +46,7 @@ namespace Fbx_NS
         throw new std::runtime_error("Unexpected PropertySerializationType");
       }
 
-      i_reader.readVector(property.data, dataTypeSizeInBytes * property.compressedLength);
+      i_reader.readVector(property.data, property.compressedLength);
 
       return property;
     }
