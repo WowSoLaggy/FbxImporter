@@ -7,6 +7,9 @@
     <Filter Include="inc">
       <UniqueIdentifier>{ff2a9d34-bfe6-4a66-be19-d2c48f18d422}</UniqueIdentifier>
     </Filter>
+    <Filter Include="libs">
+      <UniqueIdentifier>{056ca936-aca7-415c-a463-2b0804fd27e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -27,6 +30,12 @@
     <ClInclude Include="..\inc\Element.h">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="..\libs\miniz.h">
+      <Filter>libs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\ofbx.h">
+      <Filter>libs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -34,6 +43,12 @@
     </ClCompile>
     <ClCompile Include="FbxImporter.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\miniz.cpp">
+      <Filter>libs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\ofbx.cpp">
+      <Filter>libs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
