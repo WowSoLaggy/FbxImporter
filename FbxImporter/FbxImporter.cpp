@@ -10,6 +10,9 @@ namespace Fbx_NS
 {
   namespace
   {
+    // Fwd declaration
+    Element readElement(BinaryReader& i_reader);
+
     Property readProperty(BinaryReader& i_reader)
     {
       uint8_t typeCode;
@@ -51,6 +54,22 @@ namespace Fbx_NS
       return property;
     }
 
+    void readChilds(BinaryReader& i_reader, Element& a_element)
+    {
+      static const int FooterLength = 13;
+
+      while (i_reader.getOffset() + FooterLength < (int)a_element.endOffset)
+      {
+        auto element = readElement(i_reader);
+        if (element.isZeroEntry())
+          break;
+        a_element.childs.push_back(std::move(element));
+      }
+
+      if (i_reader.getOffset() + FooterLength == (int)a_element.endOffset)
+        i_reader.moveOffset(FooterLength);
+    }
+
     Element readElement(BinaryReader& i_reader)
     {
       Element element;
@@ -64,13 +83,7 @@ namespace Fbx_NS
       for (int propertyIdx = 0; propertyIdx < (int)element.propertiesCount; ++propertyIdx)
         element.properties.push_back(std::move(readProperty(i_reader)));
 
-      static const int FooterLength = 13;
-
-      while (i_reader.getOffset() + FooterLength < (int)element.endOffset)
-        element.childs.push_back(std::move(readElement(i_reader)));
-
-      if (i_reader.getOffset() + FooterLength == (int)element.endOffset)
-        i_reader.moveOffset(FooterLength);
+      readChilds(i_reader, element);
 
       return element;
     }
@@ -89,7 +102,16 @@ namespace Fbx_NS
     reader.readArray(header.reserved);
     reader.readValue(header.version);
 
-    return readElement(reader);
+    Element rootElement;
+    rootElement.endOffset = reader.getSize();
+    rootElement.propertiesCount = 0;
+    rootElement.propertiesListLength = 0;
+    rootElement.nameLength = 0;
+    rootElement.name = "";
+
+    readChilds(reader, rootElement);
+
+    return rootElement;
   }
 
 } // Fbx_NS

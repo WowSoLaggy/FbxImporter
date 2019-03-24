@@ -8,10 +8,14 @@ public:
     : d_stream(i_fileName, std::ios::binary)
     , d_offset(0)
   {
+    d_stream.seekg(0, std::ios::end);
+    d_size = (int)d_stream.tellg();
+    d_stream.seekg(0, std::ios::beg);
   }
 
   bool isOpen() const { return d_stream.is_open(); }
   int getOffset() const { return d_offset; }
+  int getSize() const { return d_size; }
 
   void moveOffset(int i_offset)
   {
@@ -53,4 +57,5 @@ public:
 private:
   std::ifstream d_stream;
   int d_offset;
+  int d_size;
 };
