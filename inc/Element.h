@@ -16,6 +16,15 @@ namespace Fbx_NS
     std::string name;
     std::vector<Property> properties;
     std::vector<Element> childs;
+
+    bool isZeroEntry() const
+    {
+      return
+        endOffset == 0 &&
+        propertiesCount == 0 &&
+        propertiesListLength == 0 &&
+        nameLength == 0;
+    }
   };
 
 } // Fbx_NS
