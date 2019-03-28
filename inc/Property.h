@@ -22,15 +22,15 @@ const std::unordered_map<uint8_t, PropertyType> PropertyTypeCodeToTypeMap
 {
   { 'C', PropertyType::Bool },{ 'b', PropertyType::BoolArray },
 
-{ 'Y', PropertyType::Short },
-{ 'I', PropertyType::Int },{ 'i', PropertyType::IntArray },
-{ 'L', PropertyType::Long },{ 'l', PropertyType::LongArray },
+  { 'Y', PropertyType::Short },
+  { 'I', PropertyType::Int },{ 'i', PropertyType::IntArray },
+  { 'L', PropertyType::Long },{ 'l', PropertyType::LongArray },
 
-{ 'F', PropertyType::Float },{ 'f', PropertyType::FloatArray },
-{ 'D', PropertyType::Double },{ 'd', PropertyType::DoubleArray },
+  { 'F', PropertyType::Float },{ 'f', PropertyType::FloatArray },
+  { 'D', PropertyType::Double },{ 'd', PropertyType::DoubleArray },
 
-{ 'S', PropertyType::String },
-{ 'R', PropertyType::Raw },
+  { 'S', PropertyType::String },
+  { 'R', PropertyType::Raw },
 };
 
 const std::unordered_map<PropertyType, int> PropertyTypeToTypeSizeMap
